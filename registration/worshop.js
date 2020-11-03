@@ -2,10 +2,10 @@
 
 $(document).ready(()=>{
     $('header').load('header.html .anchor,.navbar',function(){
-        alert('loaded');
+       
     })
     $('footer').load('footer.html ',function(){
-        alert('loaded');
+      
     })
     $('#pass,#cpass').on('keyup',function()
     {
