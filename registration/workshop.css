@@ -1,5 +1,7 @@
 
-
+*{
+    margin: 0px;
+}
 body{
     background: url(bg-01.jpg) fixed;
     background-size:cover ;
@@ -9,7 +11,14 @@ body{
     padding: 15px;
     margin: 0 auto;
     border-radius: 0.3em;
-    background-color: #f2f2f2;
+    background-color: springgreen ;
+    
+    opacity: 0.9;
+}
+
+
+#myForm1{
+    display: none;
 }
 
 *[role="form"] h2 { 
@@ -28,6 +37,7 @@ header{
     flex-direction: row;
     justify-content: space-around;
     height: 10vh;
+ 
     
    
 
@@ -48,14 +58,22 @@ img{
 
 footer{
    display: flex;
-   height: 10vh;
+   height: 13.5vh;
    flex-direction: row;
+   position: absolute;
    font-size: 20px;
    padding-top: 2vh;
    bottom: 0;
    left: 0;
+   margin-bottom: -50px;
+    
    width: 100%;
+  
 
+}
+.fixed-bottom{
+    bottom: 0px;
+    left: 0;
 }
 
 ul{
@@ -64,7 +82,7 @@ ul{
     flex-direction: row;
     float: right;
     padding: 0%;
-    padding-top: 3vh;
+   
     margin-right: 12vh;
 }
 
@@ -74,28 +92,33 @@ li{
     padding-left: 25px;
     padding-right: 25px;
     /* padding-bottom:4px ; */
+    padding-top: 3vh;
    
 }
-
+/* 
 li a{
     text-decoration: none;
     text-decoration: none;
-    padding-bottom: 22px;
-    font-size: 20px;
+    padding-bottom: 3vh;
+    font-size: 2rem;
     font-weight: bolder;
     color: chartreuse;
     
-}
+} */
 
-li :hover{
+/* li :hover{
     border-bottom: 5px solid coral;
-}
+    
+} */
 
 .navbar{
     width: 100%;
     height: 10vh;
 }
-
+.btn{
+    background-color: tomato;
+    color: chartreuse;
+}
 
 @media screen and (max-width:768px)
 {
@@ -119,27 +142,63 @@ li :hover{
         background-color: gray;
         margin-top: 1vh;
         position: absolute;
+        z-index: 2;
        justify-content: center;
         left: 0%;
+        border:solid salmon;
 
         
         /* position: fixed; */
     }
     /* li{padding-left: 150px;} */
-    li a{
+    /* li a{
         padding: 0%;
         text-align: center;
         font-size: 3vh;
         margin: 0%;
-    }
+    } */
     li{
         display: flex;
         justify-content:start;
         margin-top: 2px;
         margin-bottom: 2px;
-        width: 50%;
+        width: 100%;
+       
         right: 0;
         
+        
+    }
+    .container{
+        margin-top: 16vh;
+    }
+    /* li :hover{
+        border-bottom: none;
+    } */
+    footer{
+        position: relative;
+        bottom: 0;
+        left: 0;
+        height: 8vh;
+
+    }
+    *[role="form"] {
+        position: relative;
+    }
+
+    .btn{
+        width: 100%;
     }
    
+}
+
+
+
+.foot1{
+    position: relative;
+
+}
+
+.foot2{
+    position: absolute;
+    
 }

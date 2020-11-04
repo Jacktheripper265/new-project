@@ -1,0 +1,28 @@
+{
+  "users": [
+    {
+      "name": "shekhar",
+      "email": "shekharpa@cybage.com",
+      "password": "jack@ss265S",
+      "phone": "8796749069",
+      "gender": "Male",
+      "id": 1
+    },
+    {
+      "name": "ryan",
+      "email": "ryan@gmail.com",
+      "password": "Jack@ss265",
+      "phone": "8796749069",
+      "gender": "Male",
+      "id": 2
+    },
+    {
+      "name": "shekhar",
+      "email": "shekharpa@cybage.com",
+      "password": "Jack@ss265",
+      "phone": "8796749069",
+      "gender": "Male",
+      "id": 3
+    }
+  ]
+}
