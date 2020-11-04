@@ -15,7 +15,11 @@ body{
     
     opacity: 0.9;
 }
-
+.head{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: orangered;
+    font-weight: bolder;
+}
 
 #myForm1{
     display: none;

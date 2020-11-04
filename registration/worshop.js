@@ -105,7 +105,7 @@ $('#but,.gen').on('click',function(){
 //       });
 
 
-$('form').submit((a)=>{
+$('#myForm').submit((a)=>{
     a.preventDefault();
     let name=$('#name').val();
     let email=$('#email').val();
@@ -145,6 +145,8 @@ $('.button1').click(function(){
     console.log('reach');
     $('#myForm').css('display','none');
     $('#myForm1').css('display','block');
+    // $('#myForm').addClass('invisible');
+    // $('#myForm1').addClass('visible');
     $('footer').addClass('foot2');
 })
 
@@ -152,7 +154,57 @@ $('.button2').click(function(){
     console.log('reach');
     $('#myForm1').css('display','none');
     $('#myForm').css('display','block');
+    // $('#myForm').addClass('visible');
+    // $('#myForm1').addClass('invisible');
     $('footer').removeClass('foot2');
 })
 
+
+$('#myForm1').submit((a)=>{
+    a.preventDefault();
+    let email=$('#email1').val();
+    
+    let password=$('#pass1').val();
+  
+  
+
+    if(email==""&&password==""||email==""||password=="")
+    {
+        alert("name and password is incorrect")
+    }
+    else{
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:3000/users",
+        data: {"email":email,"password":password},
+        success: function(data, status, xhr){
+            console.log(data);
+            alert(data);
+            if(data!=='[]')
+            {
+            sessionStorage.setItem('user',data);
+            window.location.replace('home.html');
+            }
+            else
+            {
+            $('.text-muted').html('Wrong Email Id or Password');
+            $('.text-muted').css('color','red');
+            alert('error');
+            }
+        },
+        
+        error:function(jqXhr, textStatus, errorMessage){
+            console.log('error'+errorMessage);
+        },
+        dataType: "text",
+        contentType : "application/json",
+        
+      });
+    }
+    
+
+
 })
+
+}
+)
