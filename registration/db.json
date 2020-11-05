@@ -15,6 +15,37 @@
       "phone": "8796749069",
       "gender": "Male",
       "id": 2
+    },
+    {
+      "name": "jack",
+      "email": "Jack@gmail.com",
+      "password": "Jack@ss265",
+      "phone": "8796749069",
+      "gender": "Male",
+      "id": 3
+    }
+  ],
+  "blogs": [
+    {
+      "author": "jack",
+      "title": "trip to goa",
+      "category": "Travel",
+      "content": "<p>sdfDfsdzf</p>",
+      "id": 1
+    },
+    {
+      "author": "jack",
+      "title": "should we buy bitbucket ",
+      "category": "Entertainment",
+      "content": "<h1>dfgdfgdfgdfgdfgdfg</h1>",
+      "id": 2
+    },
+    {
+      "author": "jack",
+      "title": "trip to goa",
+      "category": "Travel",
+      "content": "<p>earfewafsafsafsafsafasfsdafsdf</p>",
+      "id": 3
     }
   ]
 }
