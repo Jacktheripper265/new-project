@@ -183,7 +183,7 @@ $('#myForm1').submit((a)=>{
             if(data!=='[]')
             {
             sessionStorage.setItem('user',data);
-            window.location.replace('editor.html');
+            window.location.replace('editor1.html');
             }
             else
             {
