@@ -18,14 +18,14 @@
  display: flex;
  flex-direction: row;
 }
+#home{
+ top: 0;
+  
+}
  
 .btn{
   margin-top: 10px;
 }
- .navi{
-   margin-top: 8vh;
-   margin-left: 0px;
- }
 
 #sidebar-wrapper {
   

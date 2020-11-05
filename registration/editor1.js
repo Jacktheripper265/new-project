@@ -67,6 +67,8 @@ $('.button3').on('click',function(){
 })
 
 
+
+
 $('.button2').on('click',function(){
     var arr=new Array();
     $.ajax({
@@ -77,6 +79,7 @@ $('.button2').on('click',function(){
             console.log('success'+status);
             alert('success'+status);
             arr=JSON.parse(data);
+            console.log(arr);
             
         },
         
