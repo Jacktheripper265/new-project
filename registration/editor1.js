@@ -1,5 +1,26 @@
 $(document).ready(()=>{
   
+
+    var arr=new Array();
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:3000/blogs",
+       
+        success: function(data, status, xhr){
+            console.log('success'+status);
+            alert('success'+status);
+            arr=JSON.parse(data);
+            console.log(arr);
+            
+        },
+        
+        error:function(jqXhr, textStatus, errorMessage){
+            console.log('error'+errorMessage);
+        },
+        dataType: "text",
+        contentType : "application/json",
+        
+      });
               
 
     $('.button1').click(function(){
@@ -69,28 +90,7 @@ $('.button3').on('click',function(){
 
 
 
-$('.button2').on('click',function(){
-    var arr=new Array();
-    $.ajax({
-        type: "GET",
-        url: "http://localhost:3000/blogs",
-       
-        success: function(data, status, xhr){
-            console.log('success'+status);
-            alert('success'+status);
-            arr=JSON.parse(data);
-            console.log(arr);
-            
-        },
-        
-        error:function(jqXhr, textStatus, errorMessage){
-            console.log('error'+errorMessage);
-        },
-        dataType: "text",
-        contentType : "application/json",
-        
-      });
-})
+
 
 
 

@@ -3,16 +3,24 @@
     margin: 0px;
 }
 body{
-    background: url(bg-01.jpg) fixed;
-    background-size:cover ;
+   
+}
+#contain{
+    display: none;
+}
+
+#home{
+    height: 100vh;
+    position: absolute;
+    top: 10vh;
 }
 *[role="form"] {
-    max-width: 590px;
+    max-width: 780px;
     padding: 15px;
     margin: 0 auto;
     border-radius: 0.3em;
     background-color: springgreen ;
-    
+    height: 70vh;
     opacity: 0.9;
 }
 .head{
@@ -21,20 +29,19 @@ body{
     font-weight: bolder;
 }
 
+.sub{
+    border: solid;
+    padding: 5px;
+}
+
+#mytextarea{
+    height: 41vh;
+}
+
 #myForm1{
     display: none;
 }
 
-#myForm{
-    display: none;
-}
-
-#contain1{
-    display: none;
-}
-#home{
-    display: block;
-}
 *[role="form"] h2 { 
     font-family: 'Open Sans' , sans-serif;
     font-size: 40px;
@@ -183,7 +190,12 @@ li a{
         
     }
     .container{
-        margin-top: 16vh;
+        margin-top: 12vh;
+    }
+
+    #mytextarea{
+        height: 30vh;
+
     }
     /* li :hover{
         border-bottom: none;
@@ -199,7 +211,7 @@ li a{
         position: relative;
     }
 
-    .btn1{
+    .btn{
         width: 100%;
     }
    

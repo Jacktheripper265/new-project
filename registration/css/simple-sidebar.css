@@ -20,6 +20,7 @@
 }
 #home{
  top: 0;
+ padding-left: 0px;
   
 }
  
@@ -31,7 +32,7 @@
   
   /* min-height: 50vh; */
   margin-left: -15rem;
-  margin-top: 8vh;
+ 
   -webkit-transition: margin .25s ease-out;
   -moz-transition: margin .25s ease-out;
   -o-transition: margin .25s ease-out;
