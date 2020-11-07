@@ -1,6 +1,25 @@
 $(document).ready(()=>{
   
+         var likes=new Array();
+         $.ajax({
+            type: "GET",
+            url: "http://localhost:3000/likes",
            
+            success: function(data, status, xhr){
+                console.log('success'+status);
+                alert('success'+status);
+                likes=data;
+                console.log(likes);
+                
+            },
+            
+            error:function(jqXhr, textStatus, errorMessage){
+                console.log('error'+errorMessage);
+            },
+            dataType: "text",
+            contentType : "application/json",
+            
+          });  
 
     $('.button1').click(function(){
         console.log('reach');
@@ -95,10 +114,15 @@ $('.buttonz').on('click',function(){
     cate=cat;
     $('.wrapperblog').html("");
     for(var i=0;i<blog.length;i++)
-    {
+    {       
+      
+        
         
         if(cat==blog[i].category)
         {
+          
+
+        
             $('.wrapperblog').append('<div class="sub"><h4><small>RECENT POSTS</small></h4><hr><h3>Author: '+blog[i].author+'</h3><br><h3>Category: '+blog[i].category+'</h3><br><h3>Title: '+blog[i].title+'</h3><br><p>'+blog[i].content+'</p><br><button class="but3 btn btn-primary" id='+blog[i].id+'>Continue Reading</button><hr></div><br><br>');
         }
         if(cat=="all")
@@ -119,7 +143,7 @@ $('#sea').on('keyup',()=>{
             if(blog[i].title.includes(search))
             {
             
-            $('.wrapperblog').append('<div class="sub"><h4><small>RECENT POSTS</small></h4><hr><h3>Author: '+blog[i].author+'</h3><br><h3>Category: '+blog[i].category+'</h3><br><h3>Title: '+blog[i].title+'</h3><br><p>'+blog[i].content+'</p>    <br><button class="button0" value='+blog[i].id+'>Continue Reading</button><hr></div><br><br>');
+            $('.wrapperblog').append('<div class="sub"><h4><small>RECENT POSTS</small></h4><hr><h3>Author: '+blog[i].author+'</h3><br><h3>Category: '+blog[i].category+'</h3><br><h3>Title: '+blog[i].title+'</h3><br><p>'+blog[i].content+'</p><br><button class="but3 btn btn-primary" id='+blog[i].id+'>Continue Reading</button><hr></div><br><br>');
             }
         }
         if(cate=="all")
@@ -127,7 +151,7 @@ $('#sea').on('keyup',()=>{
             if(blog[i].title.includes(search))
             {
             
-            $('.wrapperblog').append('<div class="sub"><h4><small>RECENT POSTS</small></h4><hr><h3>Author: '+blog[i].author+'</h3><br><h3>Category: '+blog[i].category+'</h3><br><h3>Title: '+blog[i].title+'</h3><br><p>'+blog[i].content+'</p><br><button class="button0" value='+blog[i].id+'>Continue Reading</button><hr></div><br><br>');
+            $('.wrapperblog').append('<div class="sub"><h4><small>RECENT POSTS</small></h4><hr><h3>Author: '+blog[i].author+'</h3><br><h3>Category: '+blog[i].category+'</h3><br><h3>Title: '+blog[i].title+'</h3><br><p>'+blog[i].content+'</p><br><button class="but3 btn btn-primary" id='+blog[i].id+'>Continue Reading</button><hr></div><br><br>');
             }
         }
     }
@@ -138,21 +162,58 @@ $('#sea').on('keyup',()=>{
 
 
 $('body').on('click','.but3',function(){
-    var id=$('.but3').attr('id');
+    var id=$(this).attr('id');
     console.log(id);
-    console.log('done');
+    $('#display').html("");
+    $('#home').css('display','none');
+    $('#contain1').css('display','none');
+    $('#display').css('display','block');
     for(var i=0;i<blog.length;i++)
     {
         if(blog[i].id==id)
         {
-            var ob=blog[i];
+            $('#display').append('<div class="sub"><h4></h4><hr><h3>Author: '+blog[i].author+'</h3><br><h3>Category: '+blog[i].category+'</h3><br><h3>Title: '+blog[i].title+'</h3><br><p>'+blog[i].content+'</p> <button type="button" id='+blog[i].id+' class="btn btn-default btn-sm like"><span class="glyphicon glyphicon-thumbs-up" ></span> Like</button><hr></div><br><br>');
             break;
         }
     }
-    $('#home').css('display','none');
-    $('#display').css('display','block');
-    $('#display').append('<div class="sub"><h4><small>RECENT POSTS</small></h4><hr><h3>Author: '+blog[i].author+'</h3><br><h3>Category: '+blog[i].category+'</h3><br><h3>Title: '+blog[i].title+'</h3><br><p>'+blog[i].content+'</p><hr></div><br><br>');
+  
     
+    $('body').on('click','.like',function(){
+        var blogid=$(this).attr('id');
+        // $(this).attr('disabled','true')
+        var uname=user[0].name;
+       
+        
+        
+        
+        let Obj=new Object();
+        Obj.blogid=blogid;
+        Obj.name=uname;
+
+       
+        
+        // var o=new Object();
+        // o.username=uname;
+        // o.blogid=blogid;
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:3000/likes",
+            data: JSON.stringify(Obj),
+            success: function(data, status, xhr){
+                console.log('success'+status);
+                alert('success'+status);
+                
+            },
+            
+            error:function(jqXhr, textStatus, errorMessage){
+                console.log('error'+errorMessage);
+            },
+            dataType: "text",
+            contentType : "application/json",
+            
+          });
+
+    })
 
 })
 

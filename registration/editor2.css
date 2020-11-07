@@ -65,7 +65,10 @@ header{
    
 
 }
-
+#display{
+    width: 200vw;
+    
+}
 img{
     height: 5vh;
 }
