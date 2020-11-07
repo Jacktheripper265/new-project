@@ -1,6 +1,13 @@
+
+
+
+
+
+
 $(document).ready(()=>{
-  
+       
          var likes=new Array();
+        
          $.ajax({
             type: "GET",
             url: "http://localhost:3000/likes",
@@ -8,7 +15,7 @@ $(document).ready(()=>{
             success: function(data, status, xhr){
                 console.log('success'+status);
                 alert('success'+status);
-                likes=data;
+                likes=JSON.parse(data);
                 console.log(likes);
                 
             },
@@ -19,7 +26,37 @@ $(document).ready(()=>{
             dataType: "text",
             contentType : "application/json",
             
+            
           });  
+          var commentarray=new Array();
+          $.ajax({
+            type: "GET",
+            url: "http://localhost:3000/comments",
+           
+            success: function(data, status, xhr){
+                console.log('success'+status);
+                alert('success'+status);
+                commentarray=JSON.parse(data);
+                console.log(commentarray);
+                
+            },
+            
+            error:function(jqXhr, textStatus, errorMessage){
+                console.log('error'+errorMessage);
+            },
+            dataType: "text",
+            contentType : "application/json",
+            
+            
+          });  
+
+
+
+ 
+
+
+
+
 
     $('.button1').click(function(){
         console.log('reach');
@@ -165,195 +202,232 @@ $('body').on('click','.but3',function(){
     var id=$(this).attr('id');
     console.log(id);
     $('#display').html("");
+    $('.app').html("");
     $('#home').css('display','none');
     $('#contain1').css('display','none');
     $('#display').css('display','block');
+
     for(var i=0;i<blog.length;i++)
     {
         if(blog[i].id==id)
         {
-            $('#display').append('<div class="sub"><h4></h4><hr><h3>Author: '+blog[i].author+'</h3><br><h3>Category: '+blog[i].category+'</h3><br><h3>Title: '+blog[i].title+'</h3><br><p>'+blog[i].content+'</p> <button type="button" id='+blog[i].id+' class="btn btn-default btn-sm like"><span class="glyphicon glyphicon-thumbs-up" ></span> Like</button><hr></div><br><br>');
+            $('#display').append('<div class="fullblog"><h4></h4><hr><h3>Author: '+blog[i].author+'</h3><br><h3>Category: '
+            +blog[i].category+'</h3><br><h3>Title: '+blog[i].title+'</h3><br><p>'+blog[i].content+'</p> <button type="button" id='+
+            blog[i].id+' class="btn btn-default btn-sm like"><span class="glyphicon glyphicon-thumbs-up" ></span> Like</button><span class="text-muted nlike">'
+            +''+'</span><span class="text-muted lwarn"></span><hr><br>'+
+            '<div class="container">'+
+'<div class="row bootstrap snippets bootdeys">'+
+    '<div class="col-md-8 col-sm-12">'+
+        '<div class="comment-wrapper">'+
+            '<div class="panel panel-info">'+
+                '<div class="panel-heading">'+
+                   'Comment panel'+
+                '</div>'+
+                '<div class="panel-body">'+
+                    '<textarea class="form-control" id="comarea" placeholder="write a comment..." rows="3"></textarea>'+
+                    '<br>'+
+                    '<button type="button" class="btn btn-info pull-right com" id='+blog[i].id+'>Post</button>'+
+                    '<div class="clearfix"></div>'+
+                    '<hr>'+
+                    '<ul class="media-list app">'+                         
+                    '</ul>'+
+               '</div>'+
+            '</div>'+
+        '</div>'+
+
+   '</div>'+
+'</div>'+
+'</div>'+
+            
+            
+            
+            '</div><br><br>');
             break;
         }
     }
+    for(var i=0;i<commentarray.length;i++)
+{
+    if(commentarray[i].blogid==id)
+    {
+        $('.app').append('<li class="media">'+
+                            '<a href="#" class="pull-left">'+
+                                '<img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">'+
+                            '</a>'+
+                            '<div class="media-body">'+
+                                '<span class="text-muted pull-right">'+
+                                '<strong class="text-success">@'+commentarray[i].name+'</strong>'+
+                                '<p>'+
+                                    commentarray[i].content+
+                                '</p>'+
+                            '</div>'+
+                        '</li>');
+    }
+}
   
+})
+
+function check1(name,id)
+{
     
-    $('body').on('click','.like',function(){
-        var blogid=$(this).attr('id');
-        // $(this).attr('disabled','true')
-        var uname=user[0].name;
+    var flag=0;
+    
+    console.log(likes);
+        for(var i=0;i<likes.length;i++)
+        {
+            console.log(likes.length);
+            if(likes[i].name==name && likes[i].blogid==id)
+          {
+              console.log(likes[i].name,name);
+              console.log(likes[i].blogid,id);
+                // $('.nlike').html(likes.length);
+                // $('.like').attr('disabled','true');
+                // $('.nlike').css('color','red');
+                
+                flag=1;
+                break;
+
+
+            }
+        }
+        if(flag==1)
+        {
+           
+            return 'false';
+
+        }
+        else{
+            
+            return'true';
+        }
+}
+
        
-        
-        
-        
+
+       
+    $('body').on('click','.like',function(a){
+        var blogid=$(this).attr('id');
+        a.preventDefault();
+        var uname=user[0].name;
         let Obj=new Object();
         Obj.blogid=blogid;
         Obj.name=uname;
-
-       
         
-        // var o=new Object();
-        // o.username=uname;
-        // o.blogid=blogid;
+        
+        let cnt=0;
+
+        $.each(likes,function(i,v){
+            if(v.blogid==blogid)
+            {
+                cnt+=1;
+
+            }
+        });
+        
+        if(check1(uname,blogid)=='true')
+        {
+    
+        
         $.ajax({
             type: "POST",
             url: "http://localhost:3000/likes",
+            
             data: JSON.stringify(Obj),
             success: function(data, status, xhr){
                 console.log('success'+status);
                 alert('success'+status);
-                
+                $('.nlike').html(cnt);
+                $('.lwarn').css('color','green');
+                $('.lwarn').html("  liked successfully");
+                $(this).removeAttr('disabled');
+             
+                a.preventDefault();
             },
             
             error:function(jqXhr, textStatus, errorMessage){
                 console.log('error'+errorMessage);
             },
             dataType: "text",
+            
+            
+            contentType : "application/json",
+            
+          });
+        }
+        else{ 
+            $('.nlike').html(" "+cnt);
+            $('.lwarn').html("  already done");
+            $('.lwarn').css('color','red');
+            $(this).attr('disabled','true');
+           
+            
+        }
+        
+
+    })
+
+    $('body').on('click','.com',function(){
+        let content=$('#comarea').val();
+        let blogid=$(this).attr('id');
+        var name=user[0].name;
+        let obj=new Object();
+        obj.content=content;
+        obj.blogid=blogid;
+        obj.name=name;
+
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:3000/comments",
+            
+            data: JSON.stringify(obj),
+            success: function(data, status, xhr){
+                console.log('success'+status);
+                alert('success'+status);
+                $('.nlike').html(cnt);
+                $('.lwarn').css('color','green');
+                $('.lwarn').html("  liked successfully");
+                $(this).removeAttr('disabled');
+             
+                a.preventDefault();
+            },
+            
+            error:function(jqXhr, textStatus, errorMessage){
+                console.log('error'+errorMessage);
+            },
+            dataType: "text",
+            
+            
             contentType : "application/json",
             
           });
 
     })
 
-})
-
-
-// $('#allBlogButton').click(function(e){
-  
-//     $(".wrapperblog").show();
-    
-   
-   
-//             $('.wrapperblog').html("");
-//             $('.techWrapperBlog').html("");
-//             $('.lifestyleWrapperBlog').html("");
-//             $('.ITWrapperBlog').html(" ");
-//             $('.SearchB').html(" ");
-            
-//             for(i=0;i<blog.length;i++)
-//             {
-                
-                
-//                 $('.wrapperblog').append('<div class="sub"><h4><small>RECENT POSTS</small></h4><hr><h3>Author: '+blog[i].author+'</h3><br><h3>Category: '+blog[i].category+'</h3><br><h3>Title: '+blog[i].title+'</h3><br><p>'+blog[i].content+'</p><hr></div><br><br>');
-                
-    
-//             }
-        
-// })
-
-
-// //techcatbuttonclick
-
-// $('#techCatButton').click(function(e){
-//     $(".wrapperblog").hide();
-//     $(".lifstyleWrapperBlog").hide();
-//     $(".ITWrapperBlog").hide();
-//     $(".techWrapperBlog").show();
-    
-//     $('.wrapperblog').html("");
-//     $('.techWrapperBlog').html("");
-//     $('.lifestyleWrapperBlog').html("");
-//     $('.ITWrapperBlog').html(" ");
-//     $('.SearchB').html(" ");
-
-   
-//             for(i=0;i<blog.length;i++)
-//             {
-//                 console.log(blog[i]);
-//                 if(blog[i].category=="Technology")
-//                 {  
-
-//                 $('.techWrapperBlog').append('<div class="sub"><h4><small>RECENT POSTS</small></h4><hr><h3>Author: '+blog[i].author+'</h3><br><h3>Category: '+blog[i].category+'</h3><br><h3>Title: '+blog[i].title+'</h3><br><p>'+blog[i].content+'</p><hr></div><br><br>');
-//                 }
-//             }
-        
-      
-
-
-// })
-
-// //lifestylecatButton onclick
-// $('#lifestyleCatButton').click(function(e){
-// $(".wrapperblog").hide();
-// $(".techWrapperBlog").hide();
-// $(".ITWrapperBlog").hide();
-// $(".lifestyleWrapperBlog").show();
-// $('.lifestyleWrapperBlog').html("");
-// $('.wrapperblog').html("");
-// $('.techWrapperBlog').html("");
-// $('.ITWrapperBlog').html(" ");
-// $('.SearchB').html(" ");
-
-
-//         for(i=0;i<blog.length;i++)
-//         {
-//             if(blog[i].category=="Lifestyle")
-//             {
-//             $('.lifestyleWrapperBlog').append('<div class="sub"><h4><small>RECENT POSTS</small></h4><hr><h3>Author: '+blog[i].author+'</h3><br><h3>Category: '+blog[i].category+'</h3><br><h3>Title: '+blog[i].title+'</h3><br><p>'+blog[i].content+'</p><hr></div><br><br>');
-//             }
-//         }
-    
-
-
-// })
 
 
 
-// //ITcatButton onclick
-
-// $('#ITCatButton').click(function(e){
-// $(".wrapperblog").hide();
-// $(".techWrapperBlog").hide();
-// $(".lifestyleWrapperBlog").hide();
-// $(".ITWrapperBlog").show();
-// $('.ITWrapperBlog').html(" ");
-// $('.wrapperblog').html("");
-// $('.techWrapperBlog').html("");
-// $('.lifestyleWrapperBlog').html("");
-
-// $('.SearchB').html(" ");
 
 
-//         for(i=0;i<blog.length;i++)
-//         {
-//             if(blog[i].category=="IT")
-//             {
-//             $('.ITWrapperBlog').append('<div class="sub"><h4><small>RECENT POSTS</small></h4><hr><h3>Author: '+blog[i].author+'</h3><br><h3>Category: '+blog[i].category+'</h3><br><h3>Title: '+blog[i].title+'</h3><br><p>'+blog[i].content+'</p><hr></div><br><br>');
-//             }
 
-//         }
-    
-// })
 
-// $('#sea').on('keyup',function(e){
-//     $(".wrapperblog").hide();
-//     $(".techWrapperBlog").hide();
-//     $(".lifestyleWrapperBlog").hide();
-//     $(".ITWrapperBlog").hide();
-//     $(".SearchB").show();
-//     $('.wrapperblog').html("");
-//     $('.techWrapperBlog').html("");
-//     $('.lifestyleWrapperBlog').html("");
-//     $('.ITWrapperBlog').html(" ");
-//     $('.SearchB').html(" ");
-//     var title=$('#sea').val();
-//     console.log(title);
-//             for(i=0;i<blog.length;i++)
-//             {
-//                 var titles=blog[i].title;
-//                 if(titles.includes(title))
-//                 {
-//                 $('.SearchB').append('<div class="sub"><h4><small>RECENT POSTS</small></h4><hr><h3>Author: '+blog[i].author+'</h3><br><h3>Category: '+blog[i].category+'</h3><br><h3>Title: '+blog[i].title+'</h3><br><p>'+blog[i].content+'</p><hr></div><br><br>');
-//                 }
-    
-//             }
-        
-//     })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 })
-// "author": "jack",
-// "title": "movie with buddies",
-// "category": "Entertainment",
-// "content": "<p>yuyydtuytuydu</p>",
+
+
