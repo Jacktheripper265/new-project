@@ -9,6 +9,7 @@ $(document).ready(()=>{
         $('#myForm1').css('display','block');
         // $('#myForm').addClass('invisible');
         // $('#myForm1').addClass('visible');
+        $('#display').css('display','none');
         $('footer').addClass('foot2');
     })
     
@@ -18,6 +19,7 @@ $(document).ready(()=>{
         $('#home').css('display','block');
         // $('#myForm').addClass('visible');
         // $('#myForm1').addClass('invisible');
+        $('#display').css('display','none');
         $('footer').removeClass('foot2');
     })  
 
@@ -97,11 +99,11 @@ $('.buttonz').on('click',function(){
         
         if(cat==blog[i].category)
         {
-            $('.wrapperblog').append('<div class="sub"><h4><small>RECENT POSTS</small></h4><hr><h3>Author: '+blog[i].author+'</h3><br><h3>Category: '+blog[i].category+'</h3><br><h3>Title: '+blog[i].title+'</h3><br><p>'+blog[i].content+'</p><hr></div><br><br>');
+            $('.wrapperblog').append('<div class="sub"><h4><small>RECENT POSTS</small></h4><hr><h3>Author: '+blog[i].author+'</h3><br><h3>Category: '+blog[i].category+'</h3><br><h3>Title: '+blog[i].title+'</h3><br><p>'+blog[i].content+'</p><br><button class="but3 btn btn-primary" id='+blog[i].id+'>Continue Reading</button><hr></div><br><br>');
         }
         if(cat=="all")
         {
-            $('.wrapperblog').append('<div class="sub"><h4><small>RECENT POSTS</small></h4><hr><h3>Author: '+blog[i].author+'</h3><br><h3>Category: '+blog[i].category+'</h3><br><h3>Title: '+blog[i].title+'</h3><br><p>'+blog[i].content+'</p><hr></div><br><br>');
+            $('.wrapperblog').append('<div class="sub"><h4><small>RECENT POSTS</small></h4><hr><h3>Author: '+blog[i].author+'</h3><br><h3>Category: '+blog[i].category+'</h3><br><h3>Title: '+blog[i].title+'</h3><br><p>'+blog[i].content+'</p><br><button class="but3 btn btn-primary" id='+blog[i].id+'>Continue Reading</button><hr></div><br><br>');
         }
     }
 })
@@ -117,7 +119,7 @@ $('#sea').on('keyup',()=>{
             if(blog[i].title.includes(search))
             {
             
-            $('.wrapperblog').append('<div class="sub"><h4><small>RECENT POSTS</small></h4><hr><h3>Author: '+blog[i].author+'</h3><br><h3>Category: '+blog[i].category+'</h3><br><h3>Title: '+blog[i].title+'</h3><br><p>'+blog[i].content+'</p><br> <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Continue Reading</button><hr></div><br><br>');
+            $('.wrapperblog').append('<div class="sub"><h4><small>RECENT POSTS</small></h4><hr><h3>Author: '+blog[i].author+'</h3><br><h3>Category: '+blog[i].category+'</h3><br><h3>Title: '+blog[i].title+'</h3><br><p>'+blog[i].content+'</p>    <br><button class="button0" value='+blog[i].id+'>Continue Reading</button><hr></div><br><br>');
             }
         }
         if(cate=="all")
@@ -125,7 +127,7 @@ $('#sea').on('keyup',()=>{
             if(blog[i].title.includes(search))
             {
             
-            $('.wrapperblog').append('<div class="sub"><h4><small>RECENT POSTS</small></h4><hr><h3>Author: '+blog[i].author+'</h3><br><h3>Category: '+blog[i].category+'</h3><br><h3>Title: '+blog[i].title+'</h3><br><p>'+blog[i].content+'</p><br> <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Continue Reading</button><hr></div><br><br>');
+            $('.wrapperblog').append('<div class="sub"><h4><small>RECENT POSTS</small></h4><hr><h3>Author: '+blog[i].author+'</h3><br><h3>Category: '+blog[i].category+'</h3><br><h3>Title: '+blog[i].title+'</h3><br><p>'+blog[i].content+'</p><br><button class="button0" value='+blog[i].id+'>Continue Reading</button><hr></div><br><br>');
             }
         }
     }
@@ -135,7 +137,24 @@ $('#sea').on('keyup',()=>{
 
 
 
+$('body').on('click','.but3',function(){
+    var id=$('.but3').attr('id');
+    console.log(id);
+    console.log('done');
+    for(var i=0;i<blog.length;i++)
+    {
+        if(blog[i].id==id)
+        {
+            var ob=blog[i];
+            break;
+        }
+    }
+    $('#home').css('display','none');
+    $('#display').css('display','block');
+    $('#display').append('<div class="sub"><h4><small>RECENT POSTS</small></h4><hr><h3>Author: '+blog[i].author+'</h3><br><h3>Category: '+blog[i].category+'</h3><br><h3>Title: '+blog[i].title+'</h3><br><p>'+blog[i].content+'</p><hr></div><br><br>');
+    
 
+})
 
 
 // $('#allBlogButton').click(function(e){
