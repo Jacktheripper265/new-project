@@ -47,6 +47,110 @@
       "phone": "8796749069",
       "gender": "Male",
       "id": 6
+    },
+    {
+      "name": "shekhar",
+      "email": "jaack@gmail.com",
+      "password": "Jack@ss265",
+      "phone": "8796749069",
+      "gender": "Male",
+      "id": 7
+    },
+    {
+      "name": "shekhar",
+      "email": "sack@gmail.com",
+      "password": "Jack@ss265",
+      "phone": "8796749069",
+      "gender": "Male",
+      "id": 8
+    },
+    {
+      "name": "shekha",
+      "email": "zack@gmail.com",
+      "password": "Jack@ss265",
+      "phone": "8796749069",
+      "gender": "Male",
+      "id": 9
+    },
+    {
+      "name": "zack",
+      "email": "zck@gmail.com",
+      "password": "Jack@ss265",
+      "phone": "0879674906",
+      "gender": "Male",
+      "id": 10
+    },
+    {
+      "name": "john",
+      "email": "john@gmail.com",
+      "password": "Jack@ss265",
+      "phone": "8796749069",
+      "gender": "Male",
+      "id": 11
+    },
+    {
+      "name": "jason",
+      "email": "jason@gmail.com",
+      "password": "Jack@ss265",
+      "phone": "9862792575",
+      "gender": "Male",
+      "id": 12
+    },
+    {
+      "name": "pooja",
+      "email": "pooja@gmail.com",
+      "password": "Jack@ss265",
+      "phone": "8796749069",
+      "gender": "Male",
+      "id": 13
+    },
+    {
+      "name": "pawar",
+      "email": "pawar@gmail.com",
+      "password": "Jack@ss265",
+      "phone": "8796749069",
+      "gender": "Male",
+      "id": 14
+    },
+    {
+      "name": "shekha",
+      "email": "ck@gmail.com",
+      "password": "Jack@ss265",
+      "phone": "8796749069",
+      "gender": "Male",
+      "id": 15
+    },
+    {
+      "name": "jean",
+      "email": "jean@gmail.com",
+      "password": "Jack@ss265",
+      "phone": "0879674906",
+      "gender": "Female",
+      "id": 16
+    },
+    {
+      "name": "jess",
+      "email": "jess@gmail.com",
+      "password": "Jack@ss265",
+      "phone": "9860289746",
+      "gender": "Female",
+      "id": 17
+    },
+    {
+      "name": "ken",
+      "email": "ke@gmail.com",
+      "password": "Jack@ss265",
+      "phone": "1111111111",
+      "gender": "Male",
+      "id": 18
+    },
+    {
+      "name": "kris",
+      "email": "ris@gmail.com",
+      "password": "Jack@ss265",
+      "phone": "7894561230",
+      "gender": "Male",
+      "id": 19
     }
   ],
   "blogs": [

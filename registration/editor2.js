@@ -1,6 +1,6 @@
 $(document).ready(()=>{
   
-              
+           
 
     $('.button1').click(function(){
         console.log('reach');
@@ -87,138 +87,188 @@ $.ajax({
     }
 })
 
-
-$('#allBlogButton').click(function(e){
-  
-    $(".wrapperblog").show();
-    
-   
-   
-            $('.wrapperblog').html("");
-            $('.techWrapperBlog').html("");
-            $('.lifestyleWrapperBlog').html("");
-            $('.ITWrapperBlog').html(" ");
-            $('.SearchB').html(" ");
-            
-            for(i=0;i<blog.length;i++)
-            {
-                
-                
-                $('.wrapperblog').append('<div class="sub"><h4><small>RECENT POSTS</small></h4><hr><h3>Author: '+blog[i].author+'</h3><br><h3>Category: '+blog[i].category+'</h3><br><h3>Title: '+blog[i].title+'</h3><br><p>'+blog[i].content+'</p><hr></div><br><br>');
-                
-    
-            }
+var cate="";
+$('.buttonz').on('click',function(){
+    var cat=$(this).attr('data-filter');
+    cate=cat;
+    $('.wrapperblog').html("");
+    for(var i=0;i<blog.length;i++)
+    {
         
+        if(cat==blog[i].category)
+        {
+            $('.wrapperblog').append('<div class="sub"><h4><small>RECENT POSTS</small></h4><hr><h3>Author: '+blog[i].author+'</h3><br><h3>Category: '+blog[i].category+'</h3><br><h3>Title: '+blog[i].title+'</h3><br><p>'+blog[i].content+'</p><hr></div><br><br>');
+        }
+        if(cat=="all")
+        {
+            $('.wrapperblog').append('<div class="sub"><h4><small>RECENT POSTS</small></h4><hr><h3>Author: '+blog[i].author+'</h3><br><h3>Category: '+blog[i].category+'</h3><br><h3>Title: '+blog[i].title+'</h3><br><p>'+blog[i].content+'</p><hr></div><br><br>');
+        }
+    }
 })
 
-
-//techcatbuttonclick
-
-$('#techCatButton').click(function(e){
-    $(".wrapperblog").hide();
-    $(".lifstyleWrapperBlog").hide();
-    $(".ITWrapperBlog").hide();
-    $(".techWrapperBlog").show();
-    
+$('#sea').on('keyup',()=>{
+    var search =$('#sea').val();
     $('.wrapperblog').html("");
-    $('.techWrapperBlog').html("");
-    $('.lifestyleWrapperBlog').html("");
-    $('.ITWrapperBlog').html(" ");
-    $('.SearchB').html(" ");
+    for(var i=0;i<blog.length;i++)
+    {
+        
+        if(cate==blog[i].category)
+        {
+            if(blog[i].title.includes(search))
+            {
+            
+            $('.wrapperblog').append('<div class="sub"><h4><small>RECENT POSTS</small></h4><hr><h3>Author: '+blog[i].author+'</h3><br><h3>Category: '+blog[i].category+'</h3><br><h3>Title: '+blog[i].title+'</h3><br><p>'+blog[i].content+'</p><br> <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Continue Reading</button><hr></div><br><br>');
+            }
+        }
+        if(cate=="all")
+        {
+            if(blog[i].title.includes(search))
+            {
+            
+            $('.wrapperblog').append('<div class="sub"><h4><small>RECENT POSTS</small></h4><hr><h3>Author: '+blog[i].author+'</h3><br><h3>Category: '+blog[i].category+'</h3><br><h3>Title: '+blog[i].title+'</h3><br><p>'+blog[i].content+'</p><br> <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Continue Reading</button><hr></div><br><br>');
+            }
+        }
+    }
+
+
+  })
+
+
+
+
+
+
+// $('#allBlogButton').click(function(e){
+  
+//     $(".wrapperblog").show();
+    
+   
+   
+//             $('.wrapperblog').html("");
+//             $('.techWrapperBlog').html("");
+//             $('.lifestyleWrapperBlog').html("");
+//             $('.ITWrapperBlog').html(" ");
+//             $('.SearchB').html(" ");
+            
+//             for(i=0;i<blog.length;i++)
+//             {
+                
+                
+//                 $('.wrapperblog').append('<div class="sub"><h4><small>RECENT POSTS</small></h4><hr><h3>Author: '+blog[i].author+'</h3><br><h3>Category: '+blog[i].category+'</h3><br><h3>Title: '+blog[i].title+'</h3><br><p>'+blog[i].content+'</p><hr></div><br><br>');
+                
+    
+//             }
+        
+// })
+
+
+// //techcatbuttonclick
+
+// $('#techCatButton').click(function(e){
+//     $(".wrapperblog").hide();
+//     $(".lifstyleWrapperBlog").hide();
+//     $(".ITWrapperBlog").hide();
+//     $(".techWrapperBlog").show();
+    
+//     $('.wrapperblog').html("");
+//     $('.techWrapperBlog').html("");
+//     $('.lifestyleWrapperBlog').html("");
+//     $('.ITWrapperBlog').html(" ");
+//     $('.SearchB').html(" ");
 
    
-            for(i=0;i<blog.length;i++)
-            {
-                console.log(blog[i]);
-                if(blog[i].category=="Technology")
-                {  
+//             for(i=0;i<blog.length;i++)
+//             {
+//                 console.log(blog[i]);
+//                 if(blog[i].category=="Technology")
+//                 {  
 
-                $('.techWrapperBlog').append('<div class="sub"><h4><small>RECENT POSTS</small></h4><hr><h3>Author: '+blog[i].author+'</h3><br><h3>Category: '+blog[i].category+'</h3><br><h3>Title: '+blog[i].title+'</h3><br><p>'+blog[i].content+'</p><hr></div><br><br>');
-                }
-            }
+//                 $('.techWrapperBlog').append('<div class="sub"><h4><small>RECENT POSTS</small></h4><hr><h3>Author: '+blog[i].author+'</h3><br><h3>Category: '+blog[i].category+'</h3><br><h3>Title: '+blog[i].title+'</h3><br><p>'+blog[i].content+'</p><hr></div><br><br>');
+//                 }
+//             }
         
       
 
 
-})
+// })
 
-//lifestylecatButton onclick
-$('#lifestyleCatButton').click(function(e){
-$(".wrapperblog").hide();
-$(".techWrapperBlog").hide();
-$(".ITWrapperBlog").hide();
-$(".lifestyleWrapperBlog").show();
-$('.lifestyleWrapperBlog').html("");
-$('.wrapperblog').html("");
-$('.techWrapperBlog').html("");
-$('.ITWrapperBlog').html(" ");
-$('.SearchB').html(" ");
+// //lifestylecatButton onclick
+// $('#lifestyleCatButton').click(function(e){
+// $(".wrapperblog").hide();
+// $(".techWrapperBlog").hide();
+// $(".ITWrapperBlog").hide();
+// $(".lifestyleWrapperBlog").show();
+// $('.lifestyleWrapperBlog').html("");
+// $('.wrapperblog').html("");
+// $('.techWrapperBlog').html("");
+// $('.ITWrapperBlog').html(" ");
+// $('.SearchB').html(" ");
 
 
-        for(i=0;i<blog.length;i++)
-        {
-            if(blog[i].category=="Lifestyle")
-            {
-            $('.lifestyleWrapperBlog').append('<div class="sub"><h4><small>RECENT POSTS</small></h4><hr><h3>Author: '+blog[i].author+'</h3><br><h3>Category: '+blog[i].category+'</h3><br><h3>Title: '+blog[i].title+'</h3><br><p>'+blog[i].content+'</p><hr></div><br><br>');
-            }
-        }
+//         for(i=0;i<blog.length;i++)
+//         {
+//             if(blog[i].category=="Lifestyle")
+//             {
+//             $('.lifestyleWrapperBlog').append('<div class="sub"><h4><small>RECENT POSTS</small></h4><hr><h3>Author: '+blog[i].author+'</h3><br><h3>Category: '+blog[i].category+'</h3><br><h3>Title: '+blog[i].title+'</h3><br><p>'+blog[i].content+'</p><hr></div><br><br>');
+//             }
+//         }
     
 
 
-})
+// })
 
 
 
-//ITcatButton onclick
+// //ITcatButton onclick
 
-$('#ITCatButton').click(function(e){
-$(".wrapperblog").hide();
-$(".techWrapperBlog").hide();
-$(".lifestyleWrapperBlog").hide();
-$(".ITWrapperBlog").show();
-$('.ITWrapperBlog').html(" ");
-$('.wrapperblog').html("");
-$('.techWrapperBlog').html("");
-$('.lifestyleWrapperBlog').html("");
+// $('#ITCatButton').click(function(e){
+// $(".wrapperblog").hide();
+// $(".techWrapperBlog").hide();
+// $(".lifestyleWrapperBlog").hide();
+// $(".ITWrapperBlog").show();
+// $('.ITWrapperBlog').html(" ");
+// $('.wrapperblog').html("");
+// $('.techWrapperBlog').html("");
+// $('.lifestyleWrapperBlog').html("");
 
-$('.SearchB').html(" ");
+// $('.SearchB').html(" ");
 
 
-        for(i=0;i<blog.length;i++)
-        {
-            if(blog[i].category=="IT")
-            {
-            $('.ITWrapperBlog').append('<div class="sub"><h4><small>RECENT POSTS</small></h4><hr><h3>Author: '+blog[i].author+'</h3><br><h3>Category: '+blog[i].category+'</h3><br><h3>Title: '+blog[i].title+'</h3><br><p>'+blog[i].content+'</p><hr></div><br><br>');
-            }
+//         for(i=0;i<blog.length;i++)
+//         {
+//             if(blog[i].category=="IT")
+//             {
+//             $('.ITWrapperBlog').append('<div class="sub"><h4><small>RECENT POSTS</small></h4><hr><h3>Author: '+blog[i].author+'</h3><br><h3>Category: '+blog[i].category+'</h3><br><h3>Title: '+blog[i].title+'</h3><br><p>'+blog[i].content+'</p><hr></div><br><br>');
+//             }
 
-        }
+//         }
     
-})
+// })
 
-$('#sea').on('keyup',function(e){
-    $(".wrapperblog").hide();
-    $(".techWrapperBlog").hide();
-    $(".lifestyleWrapperBlog").hide();
-    $(".ITWrapperBlog").hide();
-    $(".SearchB").show();
-    $('.wrapperblog').html("");
-    $('.techWrapperBlog').html("");
-    $('.lifestyleWrapperBlog').html("");
-    $('.ITWrapperBlog').html(" ");
-    $('.SearchB').html(" ");
-    var title=$('#sea').val();
-    console.log(title);
-            for(i=0;i<blog.length;i++)
-            {
-                var titles=blog[i].title;
-                if(titles.includes(title))
-                {
-                $('.SearchB').append('<div class="sub"><h4><small>RECENT POSTS</small></h4><hr><h3>Author: '+blog[i].author+'</h3><br><h3>Category: '+blog[i].category+'</h3><br><h3>Title: '+blog[i].title+'</h3><br><p>'+blog[i].content+'</p><hr></div><br><br>');
-                }
+// $('#sea').on('keyup',function(e){
+//     $(".wrapperblog").hide();
+//     $(".techWrapperBlog").hide();
+//     $(".lifestyleWrapperBlog").hide();
+//     $(".ITWrapperBlog").hide();
+//     $(".SearchB").show();
+//     $('.wrapperblog').html("");
+//     $('.techWrapperBlog').html("");
+//     $('.lifestyleWrapperBlog').html("");
+//     $('.ITWrapperBlog').html(" ");
+//     $('.SearchB').html(" ");
+//     var title=$('#sea').val();
+//     console.log(title);
+//             for(i=0;i<blog.length;i++)
+//             {
+//                 var titles=blog[i].title;
+//                 if(titles.includes(title))
+//                 {
+//                 $('.SearchB').append('<div class="sub"><h4><small>RECENT POSTS</small></h4><hr><h3>Author: '+blog[i].author+'</h3><br><h3>Category: '+blog[i].category+'</h3><br><h3>Title: '+blog[i].title+'</h3><br><p>'+blog[i].content+'</p><hr></div><br><br>');
+//                 }
     
-            }
+//             }
         
-    })
+//     })
 
 
 
